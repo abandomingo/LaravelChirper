@@ -1,15 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChirpController;
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-require __DIR__.'/settings.php';
+Route::get('/', [ChirpController::class, 'index']);
+Route::post('/chirps', [ChirpController::class, 'store']);
